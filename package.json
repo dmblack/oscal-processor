@@ -1,0 +1,26 @@
+{
+  "name": "oscal-processor",
+  "version": "0.0.1",
+  "description": "A simple OSCAL processor written in NodeJS.",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "cross-env NODE_ENV=test jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dmblack/oscal-processor.git"
+  },
+  "keywords": [
+    "OSCAL",
+    "nist",
+    "sp",
+    "800",
+    "53"
+  ],
+  "author": "Blackmore, Dustyn",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dmblack/oscal-processor/issues"
+  },
+  "homepage": "https://github.com/dmblack/oscal-processor#readme"
+}
