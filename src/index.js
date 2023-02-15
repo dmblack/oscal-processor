@@ -15,7 +15,7 @@ const oscalProcessor = (schema) => {
   else if (typeof schema !== 'object' && schema["$comment"] !== "OSCAL Unified Model of Models: JSON Schema")
     return {};
 
-  return Object.assign(schema, {
+  return Object.assign({}, schema, {
     /**
      * process
      * @param {Object} OSCAL - OSCAL (schema) compliant Object (JSON).
