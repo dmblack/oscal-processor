@@ -4,7 +4,9 @@
   "description": "A simple OSCAL processor written in NodeJS.",
   "main": "src/index.js",
   "scripts": {
-    "test": "cross-env NODE_ENV=test jest"
+    "start": "./node_modules/.bin/cross-env NODE_ENV=test node src/index.js",
+    "test": "./node_modules/.bin/cross-env NODE_ENV=test jest",
+    "test-watch": "./node_modules/.bin/cross-env NODE_ENV=test jest --watch"
   },
   "repository": {
     "type": "git",
@@ -22,5 +24,9 @@
   "bugs": {
     "url": "https://github.com/dmblack/oscal-processor/issues"
   },
-  "homepage": "https://github.com/dmblack/oscal-processor#readme"
+  "homepage": "https://github.com/dmblack/oscal-processor#readme",
+  "devDependencies": {
+    "cross-env": "^7.0.3",
+    "jest": "^29.4.2"
+  }
 }
