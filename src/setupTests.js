@@ -8,7 +8,7 @@ module.exports = {
       "title": "NIST Special Publication 800-53 Revision 5 LOW IMPACT BASELINE",
       "last-modified": "2021-06-08T13:57:33.97549-04:00",
       "version": "Final",
-      "oscal-version": "1.0.0",
+      "oscal-version": "1.1.0",
       "roles": [
         {
           "id": "creator",

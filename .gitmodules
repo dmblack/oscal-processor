@@ -1,3 +1,6 @@
 [submodule "src/OSCAL"]
 	path = src/OSCAL
-	url = git@github.com:usnistgov/OSCAL.git
+	url = github.com:/usnistgov/OSCAL
+[submodule "src/oscal-content"]
+	path = src/oscal-content
+	url = github.com:/usnistgov/oscal-content
