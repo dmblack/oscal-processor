@@ -1,5 +1,20 @@
 # oscal-processor
-This is a simple NodeJS OSCAL processor. The goal of the project is to facilitate usage of OSCAL - either input or output.
+This is a simple NodeJS OSCAL processor. The goal/purpose of this simple
+; 
+  To provide an interface between software/users and OSCAL content.
+
+An example of this may be;
+  * a middleware between a frontend (web?) application, and the OSCAL.
+
+The project is, ideally;
+  * dependency lite, and
+  * transparent and true to core OSCAL.
+
+Considering the later; the project currently depends heavily on OSCAL, 
+and oscal-content, from NIST - as submodules. The 'releases' of the 
+project will only bundle in the true 'hard' dependencies, such as the 
+relevant core schema that NIST supply. Additionally; users CAN override 
+the schema.
 
 # Usage
 ## Requirements;
