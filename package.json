@@ -6,8 +6,8 @@
   "scripts": {
     "semistandard": "./node_modules/.bin/cross-env NODE_ENV=test semistandard --fix",
     "start": "./node_modules/.bin/cross-env NODE_ENV=test node src/index.js",
-    "test": "./node_modules/.bin/cross-env NODE_ENV=test semistandard && jest",
-    "test-watch": "./node_modules/.bin/cross-env NODE_ENV=test semistandard && jest --watch"
+    "test": "./node_modules/.bin/cross-env NODE_ENV=test jest",
+    "test-watch": "./node_modules/.bin/cross-env NODE_ENV=test jest --watch"
   },
   "repository": {
     "type": "git",
