@@ -31,7 +31,8 @@
     "ajv-formats": "^2.1.1",
     "cross-env": "^7.0.3",
     "jest": "^29.4.2",
-    "semistandard": "^16.0.1"
+    "semistandard": "^16.0.1",
+    "struct.js": "github:dmblack/struct.js"
   },
   "semistandard": {
     "ignore": [
