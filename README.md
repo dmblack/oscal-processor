@@ -18,6 +18,10 @@ the schema.
 
 # Usage
 ## Requirements;
+NOTE: This project in it's current form, from the Development branch, 
+uses nearly 2GB, not including npm cache. This is primarily due to 
+dependence of the NIST OSCAL projects, in their raw form. Optimisation 
+of this is a work in progress.
 * ajv
 * ajv-formats
 
