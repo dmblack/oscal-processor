@@ -6,7 +6,7 @@
   "scripts": {
     "build": "babel src --out-dir build",
     "build-clean": "rm build/*",
-    "install": "git submodule update --init --recursivee",
+    "install": "git submodule update --init --recursive",
     "semistandard": "./node_modules/.bin/cross-env NODE_ENV=test semistandard --fix",
     "start": "./node_modules/.bin/cross-env NODE_ENV=test node src/index.js",
     "test": "./node_modules/.bin/cross-env NODE_ENV=test jest",
