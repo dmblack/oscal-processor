@@ -19,7 +19,7 @@
  */
 const OSCALProcessor = (dependencies, schema, oscal, debug = false) => {
   if (typeof schema === 'undefined') {
-    schema = require('./OSCAL/json/schema/oscal_complete_schema.json');
+    schema = require('./../lib/OSCAL/json/schema/oscal_complete_schema.json');
   } else if (typeof schema !== 'object' && schema.$comment !== 'OSCAL Unified Model of Models: JSON Schema') {
     return {};
   }

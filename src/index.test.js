@@ -1,9 +1,9 @@
 /* global describe expect it */
 const OSCALProcessor = require('./index.js');
-const schema = require('./OSCAL/json/schema/oscal_complete_schema.json');
+const schema = require('./../lib/OSCAL/json/schema/oscal_complete_schema.json');
 const catalogSchema = require('./setupTests').catalogSchema;
 // const validOSCAL = require('./setupTests').validOSCAL.profile;
-const validOSCAL = require('./oscal-content/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json')
+const validOSCAL = require('./../lib/oscal-content/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json')
 const ajv = require('ajv');
 const ajvFormats = require('ajv-formats');
 const struct = require('struct.js');

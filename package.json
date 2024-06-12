@@ -2,13 +2,15 @@
   "name": "oscal-processor",
   "version": "0.0.1",
   "description": "A simple OSCAL processor written in NodeJS.",
-  "main": "lib/index.js",
+  "main": "build/index.js",
   "scripts": {
+    "build": "babel src --out-dir build",
+    "build-clean": "rm build/*",
+    "install": "git submodule update --init --recursivee",
     "semistandard": "./node_modules/.bin/cross-env NODE_ENV=test semistandard --fix",
     "start": "./node_modules/.bin/cross-env NODE_ENV=test node src/index.js",
     "test": "./node_modules/.bin/cross-env NODE_ENV=test jest",
-    "test-watch": "./node_modules/.bin/cross-env NODE_ENV=test jest --watch",
-    "build": "babel src --out-dir lib"
+    "test-watch": "./node_modules/.bin/cross-env NODE_ENV=test jest --watch"
   },
   "repository": {
     "type": "git",

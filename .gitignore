@@ -104,4 +104,8 @@ dist
 .tern-port
 
 # Build/Built byproducts
+build/
+
+# lib directory
+#   Libraries are installed with npm run install.
 lib/
