@@ -1,9 +1,8 @@
 /* global describe expect it */
-const OSCALProcessor = require('./index.js');
-const schema = require('./../lib/OSCAL/json/schema/oscal_complete_schema.json');
-const catalogSchema = require('./setupTests').catalogSchema;
-// const validOSCAL = require('./setupTests').validOSCAL.profile;
-const validOSCAL = require('./../lib/oscal-content/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json')
+import { definitions as schema } from '@root/lib/oscal_complete_schema.json'; 
+import { catalogSchema } from './setupTests';
+import { validOSCAL } from '@root/lib/NIST_SP-800-53_rev5_catalog.json';
+import OSCALProcessor from './index.js';
 const ajv = require('ajv');
 const ajvFormats = require('ajv-formats');
 const struct = require('struct.js');
@@ -39,7 +38,7 @@ describe('MODULE;', () => {
  * Catalog section.
  */
 describe('CATALOG;', () => {
-  describe('Functionality of child properties, key operational criteria', () => {
+  describe('Functionality of child properties, key operational criteria', () => { 
     it('OSCALProcessor - Should contain the getOSCALElementByElementID property', () => {
       expect(OSCALProcessor(dependencies, schema, validOSCAL)).toHaveProperty('getOSCALElementByElementID');
     });
@@ -49,7 +48,7 @@ describe('CATALOG;', () => {
     });
 
     it('OSCALProcessor - The getOSCALElementByElementID function should return an Object', () => {
-      expect(typeof OSCALProcessor(dependencies, schema, validOSCAL).getOSCALElementByElementID('fdac0321-959f-43ec-a91d-322da7d9761c') === 'object').toBeTruthy();
+      expect(typeof OSCALProcessor(dependencies, schema, validOSCAL).getOSCALElementByElementID('41a93829-b76b-43ec-b9e7-250553511549') === 'object').toBeTruthy();
     });
 
     it('OSCALProcessor - Should contain the getSchemaByPropertyName property', () => {

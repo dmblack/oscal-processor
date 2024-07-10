@@ -1,4 +1,7 @@
 'use strict'
+
+import { definitions as defaultSchema } from '@root/lib/oscal_complete_schema.json';
+
 /**
  * OSCALProcessor
  *
@@ -19,7 +22,7 @@
  */
 const OSCALProcessor = (dependencies, schema, oscal, debug = false) => {
   if (typeof schema === 'undefined') {
-    schema = require('./../lib/OSCAL/json/schema/oscal_complete_schema.json');
+    schema = defaultSchema;
   } else if (typeof schema !== 'object' && schema.$comment !== 'OSCAL Unified Model of Models: JSON Schema') {
     return {};
   }
