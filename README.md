@@ -1,5 +1,5 @@
 # oscal-processor
-This is a simple NodeJS OSCAL processor. The goal/purpose of this simple
+The goal/purpose of this simple
 ; 
   To provide an interface between software/users and OSCAL content.
 
@@ -11,22 +11,31 @@ The project is, ideally;
   * transparent and true to core OSCAL.
 
 Considering the later; the project currently depends heavily on OSCAL, 
-and oscal-content, from NIST - as submodules. The 'releases' of the 
-project will only bundle in the true 'hard' dependencies, such as the 
-relevant core schema that NIST supply. Additionally; users CAN override 
-the schema.
+and oscal-content, from NIST. This is achieved now using direct web
+requests to the official projects on github.
+
+Note that consumers CAN override the schema by design. These are not 
+hard links.
 
 # Usage
 ## Requirements;
-NOTE: This project in it's current form, from the Development branch, 
-uses nearly 2GB, not including npm cache. This is primarily due to 
-dependence of the NIST OSCAL projects, in their raw form. Optimisation 
-of this is a work in progress.
 * ajv
 * ajv-formats
 
 Note: Both dependencies must be injected via the dependencies object, when initiating the processor;
     ``` const oscalProcessor = require('oscalProcessor')({ ajv, ajvFormats}, <opt - Schema>)
+
+IMPORTANT: These dependencies are NOT bundled or included in the library
+ in any way. Please ensure you include them in your project, and inject 
+into this library.
+
+This project, during the development experience, now uses little 
+storage. Execute `npm run developer` to gather the additional developer 
+dependencies.
+
+(If you're using windows, please checkout the setupDevDependencies.sh 
+scirpt for your required library files (catalog for testing, schema for 
+core library))
 
 # Further (from the developer) Notes
   This project is being developed on my own time, with many constraints
