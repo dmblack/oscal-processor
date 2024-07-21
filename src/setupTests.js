@@ -223,10 +223,10 @@ module.exports = {
       }
     }
   },
+  '_catalogSchema_Comment': 'Manually generated with the http://csrc.nist.gov/ns/oscal/1.0/1.1.2/oscal-complete-schema.json content. This will not be sustainable',
   catalogSchema: {
-    properties: { catalog: { '$ref': '#assembly_oscal-catalog_catalog' } },
+    properties: { '$schema': { '$ref': '#json-schema-directive' }, catalog: { '$ref': '#assembly_oscal-catalog_catalog' } },
     required: [ 'catalog' ],
-    additionalProperties: false,
-    maxProperties: 1
+    additionalProperties: false
   }
 }

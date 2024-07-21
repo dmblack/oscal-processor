@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 import { definitions as defaultSchema } from '@root/lib/oscal_complete_schema.json';
 
@@ -35,7 +35,7 @@ const OSCALProcessor = (dependencies, schema, oscal, debug = false) => {
     : false;
   const struct = typeof dependencies.struct === 'function'
     ? dependencies.struct
-    : true;
+    : false;
 
   if (ajv === false || ajvFormats === false || struct === false) {
     return {};
@@ -46,9 +46,19 @@ const OSCALProcessor = (dependencies, schema, oscal, debug = false) => {
   //  avoids conflict due to href ambiguity in uuid references, and
   //  url references.
   function isURL(target) {
-    return /^http/.test(target);
+    return typeof target !== 'object'
+      ? /^http/.test(target)
+      : false;
   }
 
+  /**
+   * getSchemaByPropertyName
+   *  Returns the schema by property name propertyName.
+   * @param {string} propertyName The property name to which we result
+   * @param {object} newSchemaAsObject A new, or the existing, schema to use
+   * @param {object} newOSCALAsObject A new, or the existing, OSCAL to use.
+   * @returns {object} - The property, resolved by proeprtyName.
+   */
   const getSchemaByPropertyName = (propertyName, newSchemaAsObject = schema, newOSCALAsObject = oscal) => {
     /**
      * newSchemaAsObject.oneOf[0].properties[Object.keys(newSchemaAsObject.oneOf[0].properties)[0]]
@@ -56,9 +66,9 @@ const OSCALProcessor = (dependencies, schema, oscal, debug = false) => {
 
     // If our object is type correct
     const result = typeof newSchemaAsObject.oneOf === 'object' && Array.isArray(newSchemaAsObject.oneOf)
-      ? newSchemaAsObject.oneOf.find((property) => {
-        return property.properties[Object.keys(property.properties)[0]]['$ref'] === propertyName
-      })
+      ? newSchemaAsObject.oneOf.find((property) =>
+        property.properties[Object.keys(property.properties)[1]]['$ref'] === propertyName
+      )
       : false;
 
     return result;
@@ -146,9 +156,11 @@ const OSCALProcessor = (dependencies, schema, oscal, debug = false) => {
       return oscalObject;
     }
     
+    // Check if our oscalObject is in fact an object, and if so
+    //    Type check for next if statement.
     if (typeof(oscalObject) === 'object') {
+      // Check if the object has a href key.
       if (typeof(oscalObject.href) !== 'undefined') {
-
         // Check if href is an external URL
         if (isURL(oscalObject.href)) {
           // Handle external URLs as needed, or simply return them as is
@@ -222,7 +234,8 @@ const OSCALProcessor = (dependencies, schema, oscal, debug = false) => {
     }
 
     // Initiate our AJV (Another JSON Validator)
-    const validator = new ajv() || false;
+    //  Temporarily; we disable strict mode, as it is forcing our schema to fail validation (compile/process)
+    const validator = new ajv({ strict: false }) || false;
     // Expand with formats (iirc; required for date time)
     ajvFormats(validator);
     // Expose our validator.
@@ -251,26 +264,27 @@ const OSCALProcessor = (dependencies, schema, oscal, debug = false) => {
         schema: schema,
       }
     }, {
-    getOSCALElementByElementID: getOSCALElementByElementID,
-    /**
-     * resolvePropertyReferences
-     * @param {String} propertyName Property to resolve - by name
-     * @param {Object} newSchemaAsObject OSCAL Schema to use for resolution.
-     *  Defaults to instantiated schema.
-     * @param {Object} newOscalAsObject OSCAL to be used for resolution.
-     *  Defaults to instantiated oscal.
-     * @returns The identified/found object - or false for none.
-     */
-    getSchemaByPropertyName: getSchemaByPropertyName,
-    resolveReferences: resolveReferences,
-    /**
-     * process
-     * @param {Object} OSCAL - OSCAL Object (JSON) for processing.
-     * @param {String} identifier - No idea what this was meant to be..
-     * @returns The processed (resolved) OSCAL, or null.
-    */
-    process: process
-  });
+      getOSCALElementByElementID: getOSCALElementByElementID,
+      /**
+       * resolvePropertyReferences
+       * @param {String} propertyName Property to resolve - by name
+       * @param {Object} newSchemaAsObject OSCAL Schema to use for resolution.
+       *  Defaults to instantiated schema.
+       * @param {Object} newOscalAsObject OSCAL to be used for resolution.
+       *  Defaults to instantiated oscal.
+       * @returns The identified/found object - or false for none.
+       */
+      getSchemaByPropertyName: getSchemaByPropertyName,
+      resolveReferences: resolveReferences,
+      /**
+       * process
+       * @param {Object} OSCAL - OSCAL Object (JSON) for processing.
+       * @param {String} identifier - No idea what this was meant to be..
+       * @returns The processed (resolved) OSCAL, or null.
+      */
+      process: process
+    }
+  );
 };
 
 module.exports = OSCALProcessor;

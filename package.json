@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "description": "A simple OSCAL processor written in NodeJS.",
   "main": "build/index.js",
+  "type": "module",
   "scripts": {
     "postinstall": "sh -x setupDependencies.sh",
     "developer": "sh -x setupDevDependencies.sh && sh -x setupDependencies.sh",
